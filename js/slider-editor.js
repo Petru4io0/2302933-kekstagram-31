@@ -1,10 +1,11 @@
 import {getEffectsSelector} from './util';
 import {StyleFilterByEffects, Effects} from './data';
 
+const MAX_INPUT_VALUE = 100;
 const imageUploadWrapper = document.querySelector('.img-upload__wrapper');
 const effectSlider = imageUploadWrapper.querySelector('.effect-level__slider');
 const effectLevelInput = imageUploadWrapper.querySelector('.effect-level__value');
-effectLevelInput.value = 100;
+effectLevelInput.value = MAX_INPUT_VALUE;
 const effectRadioButtons = imageUploadWrapper.querySelectorAll('.effects__radio');
 const effectSliderContainer = imageUploadWrapper.querySelector('.img-upload__effect-level');
 const image = imageUploadWrapper.querySelector('.img-upload__preview img');
