@@ -1,5 +1,8 @@
 //ВОСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
 
+const errorLoadDataTemplate = document.querySelector('#data-error').content;
+const REMOVE_MESSAGE_TIMEOUT = 5000;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -39,4 +42,21 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomIntegerWithoutRepeat, getRandomArrayElement, isEscapeKey, getEffectsSelector};
+const showErrorMessage = (message) => {
+  const errorNode = errorLoadDataTemplate.cloneNode(true);
+
+  if (message) {
+    errorNode.querySelector('.data-error__title').textContent = message;
+  }
+
+  document.body.append(errorNode);
+
+  const errorLoadDataNode = document.body.querySelector('.data-error');
+
+  setTimeout(() => {
+    errorLoadDataNode.remove();
+  }, REMOVE_MESSAGE_TIMEOUT);
+
+};
+
+export {getRandomInteger, getRandomIntegerWithoutRepeat, getRandomArrayElement, isEscapeKey, getEffectsSelector, showErrorMessage};
