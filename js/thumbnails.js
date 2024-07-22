@@ -1,7 +1,3 @@
-import {getData} from './api.js';
-import {showErrorMessage} from './util.js';
-import {renderGallery} from './gallery.js';
-
 const userPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesList = document.querySelector('.pictures');
 
@@ -23,16 +19,4 @@ const renderPhotos = (photos) => {
   picturesList.appendChild(similarListFragment);
 };
 
-const bootstrap = async () => {
-  try {
-    const photos = await getData();
-    renderGallery(photos);
-    renderPhotos(photos);
-  } catch (error) {
-    showErrorMessage(error.message);
-  }
-};
-
-bootstrap();
-
-export {picturesList};
+export {picturesList, renderPhotos};
