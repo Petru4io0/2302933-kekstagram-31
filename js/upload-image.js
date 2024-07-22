@@ -8,6 +8,7 @@ imageUploadInput.addEventListener('change', (evt) => {
   const fileName = file.name.toLowerCase();
 
   const matches = FILE_TYPES.some((type) => fileName.endsWith(type));
+
   if (matches) {
     imageUploadPreview.src = URL.createObjectURL(file);
   }

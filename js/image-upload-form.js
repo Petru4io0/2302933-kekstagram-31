@@ -59,22 +59,27 @@ imageUploadForm.addEventListener('change', () => {
   effectsRadioButtonList.addEventListener('click', onEffectButtonClick);
 });
 
-const closeFormOverlay = () => {
-  imageUploadFormOverlay.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  imageUploadFormClose.removeEventListener('click', onFormOverlayCloseClick);
-  document.removeEventListener('keydown', onEscKeydown);
-  resetFilter();
-  fileUpload.value = '';
-  hashtagInput.value = '';
-  descriptionInput.value = '';
-};
-
 const pristine = new Pristine(imageUploadForm, {
   classTo: 'img-upload__form',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error'
 });
+
+const closeFormOverlay = () => {
+  imageUploadForm.reset();
+  imageUploadFormOverlay.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  imageUploadFormClose.removeEventListener('click', onFormOverlayCloseClick);
+  document.removeEventListener('keydown', onEscKeydown);
+  resetFilter();
+  image.style.removeProperty('transform');
+  imageScaleControl.value = '100%';
+  scale = 1;
+  fileUpload.value = '';
+  hashtagInput.value = '';
+  descriptionInput.value = '';
+  pristine.reset();
+};
 
 const onHashtagInputChange = () => {
   isHashtagValid(hashtagInput.value);
