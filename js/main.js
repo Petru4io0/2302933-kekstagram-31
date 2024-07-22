@@ -4,14 +4,8 @@ import {renderGallery} from './gallery.js';
 import './image-upload-form.js';
 import {renderPhotos} from './thumbnails.js';
 import {TIMEOUT_DELAY} from './data.js';
-import {
-  initFilters,
-  onRandomFilterClick,
-  renderRandomPhotos,
-  sortByComments,
-  onDiscussedFilterClick,
-  onDefaultFilterClick
-} from './filters.js';
+import {initFilters, onRandomFilterClick, renderRandomPhotos, sortByComments, onDiscussedFilterClick, onDefaultFilterClick} from './filters.js';
+import './upload-image.js';
 
 const bootstrap = async () => {
   try {
