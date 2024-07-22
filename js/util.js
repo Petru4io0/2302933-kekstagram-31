@@ -38,6 +38,22 @@ const getEffectsSelector = (currentInputId) => {
   return selectors[currentInputId];
 };
 
+function getRandomElement (elements) {
+  let randomElement;
+  const availableIndexes = [];
+  for(let i = 0; i <= elements.length - 1; i++) {
+    availableIndexes.push(i);
+  }
+  function getElement() {
+    const randomIndex = getRandomInteger(0, availableIndexes.length - 1);
+    const elementFromAvailableIndexes = availableIndexes[randomIndex];
+    availableIndexes.splice(randomIndex, 1);
+    randomElement = elements[elementFromAvailableIndexes];
+    return randomElement;
+  }
+  return getElement;
+}
+
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
@@ -59,4 +75,25 @@ const showErrorMessage = (message) => {
 
 };
 
-export {getRandomInteger, getRandomIntegerWithoutRepeat, getRandomArrayElement, isEscapeKey, getEffectsSelector, showErrorMessage};
+// Функция взята из интернета и доработана
+// Источник - https://www.freecodecamp.org/news/javascript-debounce-example
+
+function debounce (callback, timeoutDelay = 500) {
+  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
+  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
+  let timeoutId;
+
+  return (...rest) => {
+    // Перед каждым новым вызовом удаляем предыдущий таймаут,
+    // чтобы они не накапливались
+    clearTimeout(timeoutId);
+
+    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+
+    // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
+    // пока действие совершается чаще, чем переданная задержка timeoutDelay
+  };
+}
+
+export {getRandomInteger, getRandomIntegerWithoutRepeat, getRandomArrayElement, isEscapeKey, getEffectsSelector, showErrorMessage, debounce, getRandomElement};

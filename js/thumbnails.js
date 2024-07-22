@@ -16,6 +16,12 @@ const renderPhotos = (photos) => {
     similarListFragment.appendChild(userPictureElement);
   });
 
+  const pictures = picturesList.querySelectorAll('.picture');
+  if(pictures.length !== 0){
+    pictures.forEach((item)=> {
+      item.remove();
+    });
+  }
   picturesList.appendChild(similarListFragment);
 };
 
