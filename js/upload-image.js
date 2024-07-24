@@ -2,6 +2,7 @@ const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const imageUploadInput = document.querySelector('.img-upload__input');
 const imageUploadPreview = document.querySelector('.img-upload__preview img');
+const imagePreviewEffects = document.querySelectorAll('.effects__preview');
 
 imageUploadInput.addEventListener('change', (evt) => {
   const file = evt.target.files[0];
@@ -10,6 +11,10 @@ imageUploadInput.addEventListener('change', (evt) => {
   const matches = FILE_TYPES.some((type) => fileName.endsWith(type));
 
   if (matches) {
-    imageUploadPreview.src = URL.createObjectURL(file);
+    const url = URL.createObjectURL(file);
+    imageUploadPreview.src = url;
+    imagePreviewEffects.forEach((effect) => {
+      effect.style.backgroundImage = `url(${url})`;
+    });
   }
 });

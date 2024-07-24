@@ -10,22 +10,6 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const getRandomIntegerWithoutRepeat = (min, max) => {
-  const previousValues = [];
-
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-};
-
 const getEffectsSelector = (currentInputId) => {
   const selectors = {
     'effect-none': 'effects__preview--none',
@@ -53,8 +37,6 @@ function getRandomElement (elements) {
   }
   return getElement;
 }
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -96,4 +78,4 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export {getRandomInteger, getRandomIntegerWithoutRepeat, getRandomArrayElement, isEscapeKey, getEffectsSelector, showErrorMessage, debounce, getRandomElement};
+export {getRandomInteger, isEscapeKey, getEffectsSelector, showErrorMessage, debounce, getRandomElement};

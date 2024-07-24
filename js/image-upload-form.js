@@ -60,8 +60,8 @@ imageUploadForm.addEventListener('change', () => {
 });
 
 const pristine = new Pristine(imageUploadForm, {
-  classTo: 'img-upload__form',
-  errorTextParent: 'img-upload__field-wrapper',
+  classTo: 'text__hashtags-label',
+  errorTextParent: 'text__hashtags-label',
   errorTextClass: 'img-upload__field-wrapper--error'
 });
 
